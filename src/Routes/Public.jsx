@@ -10,7 +10,7 @@ import ProductosModificar from '../Pages/ProductosModificar';
 import AuthProvider from '../Context/AuthContext';
 import Footer from "../Components/footer";
 import Nosotros from '../Pages/Nosotros';
-import Reserva from '../Pages/Reserva';
+
 
 
 
@@ -23,7 +23,6 @@ function Public() {
                 <Routes>
                     <Route  path="/" element={<Home/>} />
                     <Route  path="/Nosotros" element={<Nosotros/>} />
-                    <Route  path="/reserva" element={<Reserva/>} />
                     <Route  path="/alta" element={<Registro/>}/>
                     <Route  path="/ingresar" element={<Login/>}/>
                     <Route  path="/detalle/:detalleId" element={<DetalleProd />}/>

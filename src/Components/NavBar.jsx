@@ -5,18 +5,22 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useAuthContext } from '../Context/AuthContext';
 import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
+import { useFetchProducts } from "../Utils/useFetchProducts";
+import logo from "../Assets/img/5ec82b684c8d567f28381556394870-480-0.webp"
 
 const style={
     header:{
         width:"100%",
-        fontWeight: "700",
-        fontSize:"20px",
-        display:"flex",
+        fontWeight:"500",
+        fontFamily: "Istok Web",
+        fontSize:"15px",
+        height:"90px",
+        display: "flex",
+        justifyContent:"center"
     },
     topbar:{
         backgroundColor:"#FFFFFF00",
         fontWeight:"700",
-        color:"#fafafa",
         padding:"10px",
         display:"flex",
         justifyContent:"center",
@@ -24,6 +28,18 @@ const style={
     grat:{
         color:"#202d56"
     },
+    button:{
+        width:"100px",
+        height:"50px",
+        backgroundColor:"#202d56"
+    },
+    buscar:{
+        margin:"10px"
+    },
+    logo:{
+        backgroundImage:`url(${logo})`,
+        zIndex:15000
+    }
 
 }
 
@@ -43,14 +59,14 @@ function NavBar(){
             setIsScrolled(false)
         }
     })
-
+    const {buscar,setBuscar}=useFetchProducts()
 
     return (
         <>  
 
             <header style={style.header} >
                 
-            <Navbar  collapseOnSelect expand="lg"  variant="dark"  
+            <Navbar  collapseOnSelect expand="lg"  
                     style={{backgroundColor: isScrolled? "#202d56":"#FFFFFF00",
                             position:"fixed",
                             top: isScrolled? "0px":"auto",
@@ -61,7 +77,8 @@ function NavBar(){
                             }}>
                 <Container>
                     
-                    <Navbar.Brand as={Link} to="/" style={style.text}>Camping Walter</Navbar.Brand>
+                    <Navbar.Brand as={Link} to="/"><img src={logo} alt="logo" width={100}/></Navbar.Brand>
+                    
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto" >
@@ -71,8 +88,14 @@ function NavBar(){
                                     <Nav.Link as={Link} to="/productos/ProductosAlta">Agregar Producto</Nav.Link>
                                 </>
                             )} 
-                        <Nav.Link as={Link} to="/Nosotros" >Nosotros</Nav.Link>
-                        <Nav.Link as={Link} to="/" >Reserva</Nav.Link>
+                        <Nav.Link as={Link} to="/" >Productos</Nav.Link>
+                        <Nav.Link as={Link} to="/Nosotros" >Quienes Somos</Nav.Link>
+                        <Nav.Link as={Link} to="/Nosotros" >Como Comprar</Nav.Link>
+                        <Nav.Link as={Link} to="/Nosotros" >Politica de devolucion</Nav.Link>
+                        <Nav.Link as={Link} to="/Nosotros" >Catalogo Andrea Pelegrino</Nav.Link>
+                        
+
+                        
                         </Nav>
 
                         <Nav>                    
@@ -101,3 +124,10 @@ function NavBar(){
 
 export default NavBar;
 
+
+
+/*                        <Nav.Link ><div style={style.buscar}>
+                        <input type="text"  onChange={(event)=>setBuscar(event.target.value)} />
+                        <Button variant="primary" type="submit" value={buscar} style={style.button}>Buscar</Button>
+                        </div></Nav.Link>
+                        */
