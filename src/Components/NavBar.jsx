@@ -6,7 +6,8 @@ import { useAuthContext } from '../Context/AuthContext';
 import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
 import { useFetchProducts } from "../Utils/useFetchProducts";
-import logo from "../Assets/img/5ec82b684c8d567f28381556394870-480-0.webp"
+import logo from "../Assets/img/5ec82b684c8d567f28381556394870-480-0.webp";
+import '../styles/nav.css';
 
 const style={
     header:{
@@ -39,8 +40,7 @@ const style={
     logo:{
         backgroundImage:`url(${logo})`,
         zIndex:15000
-    }
-
+    },
 }
 
 function NavBar(){
@@ -50,7 +50,6 @@ function NavBar(){
     )
 
     const [isScrolled, setIsScrolled] = useState(false);  
-
     window.addEventListener('scroll',()=>{
         if(window.scrollY > 50){
             setIsScrolled(true)
@@ -59,15 +58,19 @@ function NavBar(){
             setIsScrolled(false)
         }
     })
+
+
+
     const {buscar,setBuscar}=useFetchProducts()
 
     return (
         <>  
 
-            <header style={style.header} >
+            <header style={style.header} className="header">
                 
             <Navbar  collapseOnSelect expand="lg"  
-                    style={{backgroundColor: isScrolled? "#202d56":"#FFFFFF00",
+                    style={{backgroundColor:"#ffffff ",
+                            height: isScrolled? "70px":"110px",
                             position:"fixed",
                             top: isScrolled? "0px":"auto",
                             transition:"all .5s",
@@ -82,20 +85,17 @@ function NavBar(){
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto" >
-                        <Nav.Link as={Link} to="/" >Inicio</Nav.Link>
+                        <Nav.Link as={Link} to="/" className='links' >Inicio</Nav.Link>
                             {login &&(
                                 <>
-                                    <Nav.Link as={Link} to="/productos/ProductosAlta">Agregar Producto</Nav.Link>
+                                    <Nav.Link as={Link} to="/productos/ProductosAlta" className="links">Agregar Producto</Nav.Link>
                                 </>
                             )} 
                         <Nav.Link as={Link} to="/" >Productos</Nav.Link>
-                        <Nav.Link as={Link} to="/Nosotros" >Quienes Somos</Nav.Link>
-                        <Nav.Link as={Link} to="/Nosotros" >Como Comprar</Nav.Link>
-                        <Nav.Link as={Link} to="/Nosotros" >Politica de devolucion</Nav.Link>
-                        <Nav.Link as={Link} to="/Nosotros" >Catalogo Andrea Pelegrino</Nav.Link>
-                        
-
-                        
+                        <Nav.Link as={Link} to="/Nosotros" className="links" >Quienes Somos</Nav.Link>
+                        <Nav.Link as={Link} to="/Nosotros" className="links">Como Comprar</Nav.Link>
+                        <Nav.Link as={Link} to="/Nosotros" className="links">Politica de devolucion</Nav.Link>
+                        <Nav.Link as={Link} to="/Nosotros" className="links">Catalogo Andrea Pelegrino</Nav.Link>
                         </Nav>
 
                         <Nav>                    
