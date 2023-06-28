@@ -1,6 +1,5 @@
 import Registro from '../Pages/Registro';
 import Login from '../Pages/Login';
-import NavBar from '../Components/NavBar';
 import DetalleProd from '../Pages/DetalleProd';
 import PagDeCompra from '../Pages/PagDeCompra';
 import Home from '../Pages/Home'
@@ -10,6 +9,7 @@ import ProductosModificar from '../Pages/ProductosModificar';
 import AuthProvider from '../Context/AuthContext';
 import Footer from "../Components/footer";
 import Nosotros from '../Pages/Nosotros';
+import NavBar from '../Components/prueba'
 
 
 

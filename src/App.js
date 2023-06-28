@@ -1,17 +1,15 @@
 import './styles/App.css';
 import './styles/footer.css';
+import './styles/nav.css';
+import './styles/prueba .css'
 import { BrowserRouter as Router} from 'react-router-dom';
 import Public from './Routes/Public';
 
-const style={
-  body:{
-    fontFamily:"'Visby CF',sansSerif",
-  }
-}
+
 
 function App() {
   return (
-    <div className="App" style={style.body}>
+    <div className="App" >
         <Router>
           <Public/>
         </Router>

@@ -1,10 +1,8 @@
 
-
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: sans-serif;
 }
 
 footer{
@@ -134,4 +132,3 @@ footer{
         margin-top: 40px;
     }
 }
-

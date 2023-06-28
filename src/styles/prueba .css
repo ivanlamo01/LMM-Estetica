@@ -1,0 +1,33 @@
+.prueba{
+    color: red;
+}
+
+.header {
+    width: 100%;
+    font-weight:700;
+    font-size:15px;
+    justify-content:center;
+    display: flex;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.navbar{
+    background-color:#ffffff ;
+    transition:all .5s;
+    display:flex;
+    justify-content: center;
+    width:100%;
+    z-index:99;
+    }
+    
+.links:hover {
+    color: red;
+
+}
+
+.logo{
+    margin-left: 1%;
+}
+.buscar{
+    transition:all .5s;
+}
