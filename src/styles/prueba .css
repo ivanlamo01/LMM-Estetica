@@ -26,8 +26,12 @@
 }
 
 .logo{
-    margin-left: 1%;
+    margin-left: 2%;
 }
 .buscar{
     transition:all .5s;
+}
+
+.dropdown{
+    margin-right: 2%;
 }

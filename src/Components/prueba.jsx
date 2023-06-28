@@ -62,9 +62,10 @@ function NavBar() {
                             <button value={buscar} type="submit" ></button>
                         </Nav.Link>
                     </div>
-                   
+
                     </Nav>
 
+                    <div className='dropdown'>
                     <Nav>                    
                         {!login &&(
                             <>
@@ -79,6 +80,8 @@ function NavBar() {
                                         </NavDropdown>
                             </div>}
                     </Nav>
+                    </div>
+                    
             </Navbar.Collapse>
         </Navbar>
         </header>

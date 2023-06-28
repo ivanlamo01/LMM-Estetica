@@ -1,6 +1,5 @@
 import './styles/App.css';
 import './styles/footer.css';
-import './styles/nav.css';
 import './styles/prueba .css'
 import { BrowserRouter as Router} from 'react-router-dom';
 import Public from './Routes/Public';
