@@ -1,14 +1,23 @@
 import twitter from "../Assets/img/pngtree-twitter-social-media-round-icon-png-image_6315985.png"
 import ig from "../Assets/img/Instagram_icon.png.webp"
-import wsp from "../Assets/img/WhatsApp_icon.png.webp"
+import wsp from "../Assets/img/whatsapp.svg"
 import gmail from "../Assets/img/Gmail_icon_(2020).svg.webp"
+import fb from "../Assets/img/facebook-circle.svg"
 import ubi from "../Assets/img/3721984-removebg-preview.png"
+import { Link } from 'react-router-dom';
 
 function Footer() {
     return (
         <>
             <footer>
                 <div className="container-footer-all">
+                    <div className="topf">
+                        <a href="https://www.instagram.com/lmm.estetica/"  target={"_blank"}><img src={ig} alt="instagram"/></a>
+                        <a href="https://www.instagram.com/lmm.estetica/"  target={"_blank"}><img src={wsp} alt="whatsapp"/></a>
+                        <a href="https://www.instagram.com/lmm.estetica/"  target={"_blank"}> <img src={gmail} alt="gmail"/></a>
+                        <a href="https://www.instagram.com/lmm.estetica/"  target={"_blank"}><img src={fb} alt="facebook"/></a>
+                        
+                    </div>
                     <div className="container-body">
                         <div className="colum1">
                             <h1>Mas informacion de la compañia</h1>
@@ -20,13 +29,13 @@ function Footer() {
                             <div className="colum2">
                                 <h1>Redes Sociales</h1>
                                 <div className="row" >
-                                    <img src={twitter}/>
+                                    <img src={twitter} alt="twitter"/>
                                     <a href=" https://twitter.com/Ivan_lamo01" target={"_blank"}>
                                     <label  >Siguenos en Twitter</label>
                                     </a>
                                 </div>
                                 <div className="row" >
-                                    <img src={ig}/>
+                                    <img src={ig} alt="instagram"/>
                                     <a href=" https://www.instagram.com/ivan_lamonega/?hl=es-la" target={"_blank"}>
                                     <label  >Siguenos en Instagram</label>
                                     </a>
@@ -35,19 +44,11 @@ function Footer() {
                             <div className="colum3">
                                 <h1>Informacion Contactos</h1>
                                 <div className="row2">
-                                    <img src={ubi}/>
+                                    <img src={ubi} alt="ubicacion"/>
                                     <label>La Plata, 
                                     Argentina                                    
                                     Calle 126 y 43
                                     Casa # 493</label>
-                                </div>
-                                <div className="row2">
-                                    <img src={wsp}/>
-                                    <label>+54-2213591991</label>
-                                </div>
-                                <div className="row2">
-                                    <img src={gmail}/>
-                                        <label>Cristiancedano1030@gmail.com</label>
                                 </div>
                             </div>
                         </div>

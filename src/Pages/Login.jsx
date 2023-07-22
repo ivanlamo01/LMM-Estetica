@@ -7,7 +7,8 @@ import Alert from '../Components/Check';
 import { useState } from "react";
 import { useAuthContext } from "../Context/AuthContext";
 import { getByUserId } from "../Services/usuariosServices";
-import {Button, Spinner } from "react-bootstrap"
+import {Button, Spinner } from "react-bootstrap";
+import { login } from "../Services/usuariosServices";
 
 
 const style={
@@ -49,17 +50,8 @@ function Login() {
     const onSubmit = async (data) =>{
         setLoading(true)
         try {
-            const responseUser = await firebase
-                .auth()
-                .signInWithEmailAndPassword(data.email,data.password);
-            console.log(responseUser);
-            if (responseUser.user.uid){
-                const User = await getByUserId(responseUser.user.uid) ; 
-                handleLogin(User.docs[0].data());
-                setAlert({variant:"success", text: "¡Correcto!",duration: 3000,link:"/"});
-                setLoading(false)
-            }
-            
+            const user = await login(data);
+            console.log(user);
         } catch (e) {
             console.log(e);
             setAlert({variant:"danger", text: "Error"});

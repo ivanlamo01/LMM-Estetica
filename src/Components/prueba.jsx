@@ -45,11 +45,12 @@ function NavBar() {
                 
                 <Nav  className="me-auto">
                     <Nav.Link as={Link} to="/" ><span className='links'>INICIO</span></Nav.Link>
-                        {login &&(
+                    <Nav.Link as={Link} to="/productos/ProductosAlta" ><span className='links'>Agregar Producto</span></Nav.Link>    
+                        {/*login &&(
                             <>
                                 <Nav.Link as={Link} to="/productos/ProductosAlta" ><span className='links'>Agregar Producto</span></Nav.Link>
                             </>
-                        )} 
+                        )*/} 
                     <Nav.Link as={Link} to="/" ><span className='links'> PRODUCTOS </span></Nav.Link>
                     <Nav.Link as={Link} to="/Nosotros"  ><span className='links'> NOSOTROS </span></Nav.Link>
                     <Nav.Link as={Link} to="/Nosotros" ><span className='links'> CÓMO COMPRAR</span></Nav.Link>

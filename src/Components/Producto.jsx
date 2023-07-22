@@ -4,12 +4,7 @@ import { useAuthContext } from "../Context/AuthContext";
 
 
 const style={
-    titulo:{
-        padding: "2px",
-        color:"#202d56",
-        fontSize: "32px",
-        fontWeight: "700",
-    },
+
     id:{
             color:"#f44c7f",
             fontSize: "20px",
@@ -48,7 +43,7 @@ const style={
     }
     }
 
-function Producto({id,title,price,thumbnail,description}) {
+function Producto({id,name,price,thumbnail,description}) {
     const {login} = useAuthContext()
     return (
         <>  
@@ -56,8 +51,7 @@ function Producto({id,title,price,thumbnail,description}) {
                     <Card  style={style.card}>
                     <Card.Img variant="top" src={thumbnail} style={style.img} />
                     <Card.Body>
-                        <Card.Title style={style.titulo}>{title}</Card.Title>
-
+                        <Card.Title style={style.titulo}>{name}</Card.Title>
                     <span style={style.precioBoton}>
                         <Card.Text style={style.precio}>
                             ${price}
