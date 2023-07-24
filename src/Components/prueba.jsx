@@ -56,7 +56,7 @@ function NavBar() {
                     <Nav.Link as={Link} to="/Nosotros" ><span className='links'>POLÍTICA DE DEVOLUCIÓN</span></Nav.Link>
                     <Nav.Link as={Link} to="/Nosotros" ><span className='links'> CATALOGO ANDREA PELLEGRINO</span></Nav.Link>
                     
-                    <div className='buscar' >  
+                    <div className= "buscar" >  
                         <Nav.Link >
                             <input type="text"  onChange={(event)=>setBuscar(event.target.value)} onSubmit={buscar} />
                             <button value={buscar} type="submit" ></button>

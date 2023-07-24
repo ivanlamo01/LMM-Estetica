@@ -29,7 +29,10 @@
     margin-left: 2%;
 }
 .buscar{
-    transition:all .5s;
+    background-color: red;
+}
+.lupa{
+    background-color: green;
 }
 
 .dropdown{
