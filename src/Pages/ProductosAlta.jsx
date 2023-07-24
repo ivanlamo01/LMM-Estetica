@@ -43,8 +43,9 @@ function ProductosAlta() {
     console.log(data);
     try {
       const document = await create(data);
+      console.log(document);
           if (document){
-            navigate("/")
+            //navigate("/")
         }  
     } catch (e) {
         console.log(e);
@@ -61,22 +62,22 @@ function ProductosAlta() {
       <Container style={style.container}>
       <Form onSubmit={handleSubmit(onSubmit)}>
             <Input label="Imagen"   register={{...register("thumbnail", { required: true })}} />
-                  {errors.email && (
+                  {errors.thumbnail && (
                     <div>
                         <span>This field is required</span>
                     </div>)}
             <Input label="Precio" register={{...register("price", { required: true })}}/>
-                {errors.nombre && (
+                {errors.price && (
                 <div>
                     <span>This field is required</span>
                 </div>)}
-            <Input label="Titulo" register={{...register("title", { required: true })}}  />
-              {errors.apellido && (
+            <Input label="Titulo" register={{...register("name", { required: true })}}  />
+              {errors.name && (
                 <div>
                     <span>This field is required</span>
                 </div>)}
             <Input label="Descripcion"   register={{...register("description", { required: true })}} />
-              {errors.email && (
+              {errors.description && (
                 <div>
                     <span>This field is required</span>
                 </div>)}

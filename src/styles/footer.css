@@ -7,16 +7,13 @@
 
 footer{
     width: 100%;
-    background: #f44c7f;
-    color: white;   
+    background: white;  
 
 }
 
 .container-footer-all{
     width: 100%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 40px;
+
 }
 
 .container-body{
@@ -115,6 +112,21 @@ footer{
     text-decoration: none;
     color: #C7C7C7;
 }
+
+.topf{
+    background: rgba(72,81,86,0.2);;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.topf img{
+    width: 70px;
+    padding: 10px;
+}
+
 
 
 @media screen and (max-width: 1100px){

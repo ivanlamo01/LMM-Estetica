@@ -47,7 +47,7 @@ function DetalleProd() {
         const request = async()=>{
             try{
                 const response = await getById(detalleId)
-                    setProducto(response.data())
+                    setProducto(response)
                     console.log(response);
                     setLoading(false)
             }catch(e){
@@ -67,8 +67,8 @@ function DetalleProd() {
                         <img src={producto.thumbnail} alt="" />
                     </div>    
                     <div >
-                        <h1 style={style.text}>{producto.title}</h1>
-                        <p style={style.text}>{producto.description}</p>
+                        <h1 style={style.text}>{producto.name}</h1>
+                        <p style={style.text}>{/*producto.description*/}</p>
                         <div>
                             <h3 style={style.text}>Seleccione su talle</h3>
                             <div style={style.talles}>
@@ -81,7 +81,7 @@ function DetalleProd() {
                         </div>
 
                         <p style={style.price}>$ {producto.price}</p>
-                        <p>{producto.warranty}</p>
+                        <p>{/*producto.warranty*/}</p>
                             <Button  type="submit" style={style.button} className="botonCompra">
                                 <Link to={`/compra/`} style={{color:"white",textDecoration:"none"}}> Comprar Ahora</Link>    
                             </Button>

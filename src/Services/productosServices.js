@@ -3,11 +3,8 @@
 import firebase from "../config/firebase"
 
 export async function getAll(){
-    const querySnapshot = await firebase
-        .firestore()
-        .collection("Productos")
-        .get();
-    return (querySnapshot.docs)
+    return fetch (`http://localhost:3000/products`)
+    .then ((res => res.json()))
 }
 
 export async function getCarousel(){
@@ -19,21 +16,21 @@ export async function getCarousel(){
 }
 
 
-
 export async function getById(id){
-    return await firebase
-        .firestore()
-        .doc(`Productos/${id}`)
-        .get()
+    return fetch (`http://localhost:3000/products/${id}`)
+    .then ((res => res.json()))
 }
 
 
 export async function create(data){
-    return await firebase
-        .firestore()
-        .collection("Productos")
-        .add(data);
+    // eslint-disable-next-line no-sequences
+    return fetch (`http://localhost:3000/products/`,{   
+        method:"POST",
+        body:JSON.stringify(data)
+    })
+    .then((res)=> res.json())
 }
+
 
 export async function update(id,data){
     return await firebase

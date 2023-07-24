@@ -15,9 +15,11 @@ function Productos(){
 
                     <Row>
                         {productos.map((product) => (
-                            <Producto{...product.data()}
-                                key={product.id}
-                                id={ product.id }
+                            <Producto
+                                name= {product.name}
+                                price={product.price}
+                                key={product._id}
+                                id={ product._id }
                             />)
                         )}
                     </Row>

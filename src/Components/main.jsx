@@ -9,22 +9,16 @@ const style ={
         marginRight:"20px",
         height:"500px"
     },
-
 }
-
 
 function Main() {
     return (
         <>
         <div style={style.main}>
-                
-                    
             </div>
             <div style={style.carousel}>
                 <ControlledCarousel/>
             </div>
-           
-     
         </>
     );}
 
