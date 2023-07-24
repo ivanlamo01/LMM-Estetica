@@ -10,8 +10,9 @@ const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || {}
 );
 
-const handleLogin = (userInfo) => {
+const handleLogin = (userInfo ) => {
     localStorage.setItem("login", "true");
+    sessionStorage.setItem("login", "true");
     setLogin(true);
     if (userInfo) {
     setUser(userInfo);
@@ -23,6 +24,9 @@ const handleLogout = () => {
     localStorage.removeItem("user");
     setLogin(false);
 };
+
+
+
 
 return (
     <AuthContext.Provider value={{ login, handleLogin, handleLogout, user }}>

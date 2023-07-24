@@ -2,13 +2,13 @@ import  Form from "react-bootstrap/Form"
 import { useForm } from "react-hook-form"
 import Input from "../Components/Input";
 import Container from  "react-bootstrap/Container";
-import firebase from "../config/firebase"
 import Alert from '../Components/Check';
 import { useState } from "react";
 import { useAuthContext } from "../Context/AuthContext";
 import { getByUserId } from "../Services/usuariosServices";
 import {Button, Spinner } from "react-bootstrap";
 import { login } from "../Services/usuariosServices";
+import { useNavigate } from "react-router-dom";
 
 
 const style={
@@ -38,20 +38,21 @@ const style={
     }
 }
 
-
-
 function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm({mode:"onChange"});
     const [alert,setAlert] = useState({variant:"",text:""})
     const[loading, setLoading] = useState(false)
     const {handleLogin} = useAuthContext()
+    const navigate = useNavigate()
     
 
     const onSubmit = async (data) =>{
         setLoading(true)
         try {
             const user = await login(data);
+            handleLogin(user)
             console.log(user);
+            setLoading(false)
         } catch (e) {
             console.log(e);
             setAlert({variant:"danger", text: "Error"});

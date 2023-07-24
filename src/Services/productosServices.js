@@ -22,10 +22,14 @@ export async function getById(id){
 }
 
 
-export async function create(data){
+export async function create(data,token){
     // eslint-disable-next-line no-sequences
     return fetch (`http://localhost:3000/products/`,{   
         method:"POST",
+        headers:{
+            "Content-Type": "application/json",
+            "x-acces-token": token
+        },
         body:JSON.stringify(data)
     })
     .then((res)=> res.json())

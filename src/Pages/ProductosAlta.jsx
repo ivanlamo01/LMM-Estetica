@@ -5,6 +5,7 @@ import Input from "../Components/Input";
 import Container from "react-bootstrap/Container";
 import { create } from "../Services/productosServices";
 import { useNavigate } from "react-router-dom";
+import {useAuthContext} from "../Context/AuthContext"
 
 const style={
   separador:{
@@ -38,11 +39,12 @@ function ProductosAlta() {
   
   const { register, handleSubmit, formState: { errors } } = useForm({mode:"onChange"});
   const navigate= useNavigate();
+  const {user} = useAuthContext()
   
   const onSubmit = async (data) =>{
     console.log(data);
     try {
-      const document = await create(data);
+      const document = await create(data, user?.token);
       console.log(document);
           if (document){
             //navigate("/")
