@@ -50,13 +50,16 @@ function Login() {
         setLoading(true)
         try {
             const user = await login(data);
-            handleLogin(user)
-            console.log(user);
-            setLoading(false)
+            if(user?.token){
+                setLoading(false)
+                handleLogin(user)
+                navigate("/")
+            }else{           
+                setLoading(false);
+                setAlert({variant:"danger", text: "Usuario o contraseña incorrectos"});
+            }
         } catch (e) {
-            console.log(e);
-            setAlert({variant:"danger", text: "Error"});
-            console.log(e);
+            console.log(e)
             setLoading(false);
         } 
     };
