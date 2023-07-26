@@ -8,12 +8,9 @@ const [login, setLogin] = useState(
     localStorage.getItem("login") ? true : false
 );
 
-
 const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || {}
 );
-
-
 
 const handleLogin = (userInfo ) => {
     localStorage.setItem("login", "true");
@@ -24,15 +21,11 @@ const handleLogin = (userInfo ) => {
     }
 };
 
-
 const handleLogout = () => {
     localStorage.removeItem("login");
     localStorage.removeItem("user");
     setLogin(false);
 };
-
-
-
 
 return (
     <AuthContext.Provider value={{ login,setLogin, handleLogin, handleLogout, user }}>
@@ -42,5 +35,4 @@ return (
 };
 
 export default AuthProvider;
-
 export const useAuthContext = () => useContext(AuthContext);

@@ -1,8 +1,95 @@
-import  Form from "react-bootstrap/Form"
+import { useState } from "react";
+import "./reg.css";
+import {createUser} from "../Services/usuariosServices"
+import FormInput from "../Components/forminput"
+
+const App = () => {
+  const [values, setValues] = useState({
+    username: "",
+    email: "",
+    birthday: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  console.log(values); 
+
+  const inputs = [
+
+    {
+      id: 2,
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+      errorMessage: "It should be a valid email address!",
+      label: "Email",
+      required: true,
+    },
+    {
+      id: 4,
+      name: "password",
+      type: "password",
+      placeholder: "Password",
+      errorMessage:
+        "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
+      label: "Password",
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+      required: true,
+    },
+ 
+  ];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const form = document.getElementById('form')
+    if(form){  
+    form.addEventListener("submit",function(e){
+    e.preventDefault();
+    const payload = new FormData(form)
+    console.log([...payload]);
+    fetch (`http://localhost:3000/users`,{   
+      method:"POST",
+      headers:{
+          'Content-Type': "application/json",
+      },
+      body: payload,
+  })
+  .then((res)=> res.json())
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+  })}
+  
+  return (
+    <div className="ap">
+      <form onSubmit={handleSubmit} id='form'>
+        <h1>Register</h1>
+        {inputs.map((input) => (
+          <FormInput
+            key={input.id}
+            {...input}
+            value={values[input.name]}
+            onChange={onChange}
+          />
+        ))}
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+};
+
+export default App;
+
+
+/*import  Form from "react-bootstrap/Form"
 import { useForm } from "react-hook-form"
 import Input from "../Components/Input";
 import {Container } from "react-bootstrap";
-import firebase from "../config/firebase"
 import Check from '../Components/Check';
 import { useState } from "react";
 import ButtonWhitLoading from "../Components/buttonWhitLoading"
@@ -39,27 +126,25 @@ function Registro() {
   const { register, handleSubmit, formState: { errors } } = useForm({mode:"onChange"});
   const [alert,setAlert] = useState({variant:"",text:""})
   const[loading, setLoading] = useState(false)
+  const [values,setValues] = useState(
+    {
+      username:"",
+      email:"",
+      password:"",
+    }
+  )
+
+
 
   const onSubmit = async (data) =>{
     setLoading(true)
     console.log(data);
     try {
-      const responseUser = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(data.email, data.password);
-        console.log(responseUser);
-        if(responseUser.user.uid){
-          const document = firebase.firestore().collection("Usuarios")
-          .add({
-            nombre:data.nombre,
-            apellido:data.apellido,
-            userId:responseUser.user.uid
-            });console.log(document);
+
           if (document){
             setAlert({variant:"success", text: "¡Registro Exitoso!",duration: 3000, link:"/ingresar"});
             setLoading(false)
         }
-      }  
     } catch (e) {
         setAlert({variant:"danger", text: "Error"});
         console.log(e);
@@ -106,3 +191,4 @@ function Registro() {
 }
 
 export default Registro;
+*/

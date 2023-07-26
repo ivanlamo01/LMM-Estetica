@@ -17,13 +17,15 @@ export async function login(data){
     .then((res)=> res.json())
 }
 
-export async function register(data){
+export async function createUser(payload){
     return fetch (`http://localhost:3000/users`,{   
         method:"POST",
         headers:{
             'Content-Type': "application/json",
         },
-        body:JSON.stringify(data)
+        body: payload,
     })
     .then((res)=> res.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
 }
