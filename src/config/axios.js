@@ -1,4 +1,5 @@
 import axios from "axios";
-export default axios.create({
-    baseURL: "https://api.mercadolibre.com/"
-})
+
+const API = "http://localhost:3000"
+
+export const registerRequest = user => axios.post(`${API}/users`,user)
