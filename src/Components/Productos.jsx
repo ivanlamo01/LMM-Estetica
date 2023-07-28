@@ -11,8 +11,6 @@ function Productos(){
         return (
                 <>
                     <Loading loading={loading}>
-
-
                     <Row>
                         {productos.map((product) => (
                             <Producto

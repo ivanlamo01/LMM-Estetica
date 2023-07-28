@@ -31,8 +31,6 @@ const style={
   },
 }
 
-
-
 function Registro() {
   
   const { register, handleSubmit, formState: { errors } } = useForm({mode:"onChange"});
@@ -65,16 +63,18 @@ function Registro() {
       <Container style={style.container}>
         <Form 
           onSubmit={handleSubmit(onSubmit)}>
-          <Input label="Nombre de ususario" register={{...register("userName", { required: true })}}/>
-            {errors.nombre && (
+          <Input label="Nombre de ususario" register={{...register("userName", { required: true, unique:true })}}/>
+            {errors.userName && (
               <div>
-                  <span>This field is required</span>
+                  {errors.userName?.type === "required" && <span>This field is required</span> }
+                  {errors.userName?.type === "unique" && <span>Este usuario ya esta registrado</span> }
               </div>)}
 
-          <Input label="E-mail"  type='email' autoComplete="newUsername" register={{...register("email", { required: true })}} />
+          <Input label="E-mail"  type='email' autoComplete="newUsername" register={{...register("email", { required: true, unique:true })}} />
             {errors.email && (
               <div>
-                  <span>This field is required</span>
+                  {errors.email?.type === "required" && <span>This field is required</span> }
+                  {errors.email?.type === "unique" && <span>Este usuario ya esta registrado</span> }
               </div>)}
           <Input label="Contraseña" type="password" autoComplete="newPassword"  register={{...register("password", { required: true, minLength:6})}} />
             {errors.password && (
