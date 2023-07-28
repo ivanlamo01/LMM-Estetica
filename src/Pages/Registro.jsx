@@ -5,7 +5,10 @@ import {Container } from "react-bootstrap";
 import Check from '../Components/Check';
 import { useState } from "react";
 import ButtonWhitLoading from "../Components/buttonWhitLoading"
-import {registerRequest} from "../config/axios"
+import {useAuthContext} from "../Context/AuthContext"
+import { useNavigate } from "react-router-dom";
+import {isAuthenticated} from "../Context/AuthContext"
+import { useEffect } from "react";
 
 const style={
   separador:{
@@ -38,24 +41,17 @@ function Registro() {
   const { register, handleSubmit, formState: { errors } } = useForm({mode:"onChange"});
   const [alert,setAlert] = useState({variant:"",text:""})
   const[loading, setLoading] = useState(false)
-  
+  const {signup,isAuthenticated,errors: registerErrors} = useAuthContext();
+  const navigate = useNavigate()
 
-  const onSubmit = async (data) =>{
-    setLoading(true)
-    console.log(data);
-    try {
-          const res = await registerRequest(data)
-          console.log("🚀 ~ file: Registro.jsx:48 ~ onSubmit ~ res:", res)
-          if (document){
-            setAlert({variant:"success", text: "¡Registro Exitoso!",duration: 3000, link:"/ingresar"});
-            setLoading(false)
-        }
-    } catch (e) {
-        setAlert({variant:"danger", text: "Error"});
-        console.log(e);
-        setLoading(false);
-    }
-  };
+  useEffect(()=>{
+    if (isAuthenticated)navigate("/")
+  },[isAuthenticated])
+
+  const onSubmit = handleSubmit(async (values) =>{
+    signup(values)
+  })
+ 
 
   return (
     <div>
@@ -64,14 +60,14 @@ function Registro() {
       </div>
       <Container style={style.container}>
         <Form 
-          onSubmit={handleSubmit(onSubmit)}>
-          <Input label="Nombre de ususario" register={{...register("userName", { required: true })}}/>
-            {errors.nombre && (
+          onSubmit={onSubmit}>
+          <Input label="Nombre de ususario" autoComplete="new" register={{...register("userName", { required: true })}}/>
+            {errors.userName && (
               <div>
                   <span>This field is required</span>
               </div>)}
 
-          <Input label="E-mail"  type='email' autoComplete="newUsername" register={{...register("email", { required: true })}} />
+          <Input label="E-mail"  type='email' autoComplete="newEmail" register={{...register("email", { required: true })}} />
             {errors.email && (
               <div>
                   <span>This field is required</span>
@@ -87,6 +83,15 @@ function Registro() {
           </ButtonWhitLoading>
           {alert && <Check {...alert} />}
         </Form>
+        <div>
+          {
+            registerErrors.map((error,i)=>(
+              <div>
+                {error}
+              </div>
+            ))
+          }
+        </div>
       </Container>
     </div>
   );
