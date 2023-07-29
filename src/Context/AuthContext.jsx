@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(
         JSON.parse(localStorage.getItem("user")) || {}
     );
-    const [isAuhenticated,setIsAuthenticated] = useState(false)
+    const [isAuthenticated,setIsAuthenticated] = useState(false)
     const [errors,setErrors] = useState([])
     const signup = async (user)=>{
         try {
@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
         setLogin(false);
     };
     return (
-        <AuthContext.Provider value={{ login,setLogin, handleLogin, handleLogout, user,signup, isAuhenticated, errors }}>
+        <AuthContext.Provider value={{ login,setLogin, handleLogin, handleLogout, user,signup, isAuthenticated, errors }}>
             {children}
         </AuthContext.Provider>
     );

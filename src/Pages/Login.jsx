@@ -85,7 +85,7 @@ function Login() {
                             </div>)}
                         <Button   disabled={loading} style={style.button} type="submit">
                             {loading && <Spinner animation="border" size="sm"/>}
-                            Iniciar
+                            Iniciar sesion
                         </Button>
 
                         {alert && <Alert {...alert} />}
