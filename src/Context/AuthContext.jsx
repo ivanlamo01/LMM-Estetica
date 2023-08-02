@@ -11,8 +11,11 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(
         JSON.parse(localStorage.getItem("user")) || {}
     );
+
     const [isAuthenticated,setIsAuthenticated] = useState(false)
+    
     const [errors,setErrors] = useState([])
+    
     const signup = async (user)=>{
         try {
             const res = await registerRequest(user)
@@ -23,7 +26,6 @@ const AuthProvider = ({ children }) => {
             console.log(error);
             setErrors(error.response.data)
         }
-        
     }
 
     const handleLogin = (userInfo ) => {

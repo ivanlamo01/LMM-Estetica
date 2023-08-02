@@ -43,13 +43,25 @@ function Registro() {
   const navigate = useNavigate()
 
   useEffect(()=>{
-    if (isAuthenticated)navigate("/")
-  },[isAuthenticated])
+    if (isAuthenticated)
+    navigate("/alta")}
+    ,[isAuthenticated,navigate])
 
   const onSubmit = handleSubmit(async (values) =>{
     signup(values)
   })
- 
+
+  const valPassword = async (res) =>{
+  try {
+    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,12}/;
+    return regex
+    .test(res)
+  } catch (error) {
+    document.getElementById("password").classList.add("is-invalid") 
+  }
+    
+  
+  
 
   return (
     <div>
@@ -58,7 +70,8 @@ function Registro() {
       </div>
       <Container style={style.container}>
         <Form 
-          onSubmit={onSubmit}>
+          onSubmit={onSubmit}
+          onChange={valPassword}>
           <Input label="Nombre de ususario" autoComplete="new" register={{...register("userName", { required: true })}}/>
             {errors.userName && (
               <div>
@@ -72,7 +85,7 @@ function Registro() {
                   {errors.email?.type === "required" && <span>This field is required</span> }
                   {errors.email?.type === "unique" && <span>Este usuario ya esta registrado</span> }
               </div>)}
-          <Input label="Contraseña" type="password" autoComplete="newPassword"  register={{...register("password", { required: true, minLength:6})}} />
+          <Input label="Contraseña" type="password" autoComplete="newPassword" valPass={valPassword} id="password" register={{...register("password", { required: true, minLength:6})}} />
             {errors.password && (
               <div>
                 {errors.password?.type === "required" && <span>This field is required</span> }
@@ -86,7 +99,7 @@ function Registro() {
         <div>
           {
             registerErrors.map((error,i)=>(
-              <div>
+              <div key={i}>
                 {error}
               </div>
             ))
@@ -96,5 +109,5 @@ function Registro() {
     </div>
   );
 }
-
-export default Registro;
+}
+export default Registro

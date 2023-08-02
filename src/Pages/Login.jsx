@@ -60,7 +60,7 @@ function Login() {
         } catch (e) {
             console.log(e)
             setLoading(false);
-        } 
+            setAlert({variant:"danger", text: "Error del servidor"});        } 
     };
     
 
