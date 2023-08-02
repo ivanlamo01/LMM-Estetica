@@ -22,6 +22,9 @@ const AuthProvider = ({ children }) => {
             console.log("🚀 ~ file: Registro.jsx:48 ~ onSubmit ~ res:", res.data)
             setUser(res.data)
             setIsAuthenticated(true)
+            setTimeout(() => {
+                setIsAuthenticated(false)
+            }, 1000);
         } catch (error) {
             console.log(error);
             setErrors(error.response.data)
@@ -39,7 +42,8 @@ const AuthProvider = ({ children }) => {
     const handleLogout = () => {
         localStorage.removeItem("login");
         localStorage.removeItem("user");
-        setLogin(false);
+        setLogin(false)
+        ;
     };
     return (
         <AuthContext.Provider value={{ login,setLogin, handleLogin, handleLogout, user,signup, isAuthenticated, errors }}>

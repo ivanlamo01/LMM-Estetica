@@ -7,7 +7,6 @@ import { useState } from "react";
 import ButtonWhitLoading from "../Components/buttonWhitLoading"
 import {useAuthContext} from "../Context/AuthContext"
 import { useNavigate } from "react-router-dom";
-import {isAuthenticated} from "../Context/AuthContext"
 import { useEffect } from "react";
 
 const style={
@@ -42,27 +41,25 @@ function Registro() {
   const {signup,isAuthenticated,errors: registerErrors} = useAuthContext();
   const navigate = useNavigate()
 
-  useEffect(()=>{
-    if (isAuthenticated)
-    navigate("/alta")}
-    ,[isAuthenticated,navigate])
-
-  const onSubmit = handleSubmit(async (values) =>{
+ useEffect(() => {
+    if(isAuthenticated){
+      setLoading(false)
+      setAlert({variant:"success",text:"Usuario registrado correctamente"})
+      setTimeout(() => {
+        navigate("/")}
+        , 2500);}
+    },[isAuthenticated,navigate])
+ 
+ useEffect(() => {
+    if(registerErrors.length > 0){
+      setLoading(false)}},[registerErrors])
+    
+ const onSubmit = handleSubmit(async (values) =>{
+    setLoading(true)
     signup(values)
   })
 
-  const valPassword = async (res) =>{
-  try {
-    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,12}/;
-    return regex
-    .test(res)
-  } catch (error) {
-    document.getElementById("password").classList.add("is-invalid") 
-  }
-    
-  
-  
-
+ 
   return (
     <div>
       <div style={style.separador}>
@@ -71,7 +68,7 @@ function Registro() {
       <Container style={style.container}>
         <Form 
           onSubmit={onSubmit}
-          onChange={valPassword}>
+          >
           <Input label="Nombre de ususario" autoComplete="new" register={{...register("userName", { required: true })}}/>
             {errors.userName && (
               <div>
@@ -85,11 +82,11 @@ function Registro() {
                   {errors.email?.type === "required" && <span>This field is required</span> }
                   {errors.email?.type === "unique" && <span>Este usuario ya esta registrado</span> }
               </div>)}
-          <Input label="Contraseña" type="password" autoComplete="newPassword" valPass={valPassword} id="password" register={{...register("password", { required: true, minLength:6})}} />
+          <Input label="Contraseña" type="password" autoComplete="newPassword" id="password" register={{...register("password", { required: true,pattern:/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,12}(?=.*[$&+,:;=?@#|'<>.^*()%!-])/})}} />
             {errors.password && (
               <div>
                 {errors.password?.type === "required" && <span>This field is required</span> }
-                {errors.password?.type === "minLength" && <span>*Debe tener al menos 6 caracteres</span> }
+                {errors.password?.type === "pattern" && <span>La contraseña debe tener al menos una letra mayuscula, una minuscula, un numero y un caracter especial</span> }
               </div>)}
           <ButtonWhitLoading variant="primary" type="submit" loading={loading} style={style.button}>
             Registrarse
@@ -109,5 +106,5 @@ function Registro() {
     </div>
   );
 }
-}
+
 export default Registro
