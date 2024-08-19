@@ -11,7 +11,6 @@ export const useFetchProducts = () => {
     const request = async () => {
       try {
         const response = await getAll(buscar);
-        console.log(response);
         setProductos(response);
         setLoading(false);
       } catch (e) {

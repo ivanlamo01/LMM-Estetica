@@ -29,7 +29,7 @@ function ProductosCarousel() {
     const request = async () => {
         try {
             const response = await getCarousel();
-                console.log(response);
+
                 setCarouselImg(response);
         } catch (e) {
             console.log(e);

@@ -42,10 +42,8 @@ function ProductosAlta() {
   const {user} = useAuthContext()
   
   const onSubmit = async (data) =>{
-    console.log(data);
     try {
       const document = await create(data, user?.token);
-      console.log(document);
           if (document){
             //navigate("/")
         }  

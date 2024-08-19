@@ -48,7 +48,7 @@ function ProductosAlta() {
   }, [detalleId, setValue])
 
   const onSubmit = async (data) =>{
-    console.log(data);
+  
     try {
       const document =  update(detalleId,data)
       if (document) {

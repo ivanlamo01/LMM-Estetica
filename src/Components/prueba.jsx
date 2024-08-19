@@ -59,7 +59,7 @@ function NavBar() {
                     
                     <div className= "buscar" >  
                         <Nav.Link >
-                            <input type="text"  onChange={(event)=>setBuscar(event.target.value)} onSubmit={buscar} />
+                            <input type="text"  onChange={(event)=>setBuscar(event.target.value)} />
                             <button value={buscar} type="submit" ></button>
                         </Nav.Link>
                     </div>

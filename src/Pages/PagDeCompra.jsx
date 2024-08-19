@@ -44,7 +44,6 @@ function PagDeCompra() {
         const request = async () => {
         try {
             const response = await getByProv();
-                console.log(response);
                 setProvincias(response.provincias);
         } catch (e) {
             console.log(e);
@@ -53,7 +52,6 @@ function PagDeCompra() {
         request();
     }, []);
     
-    console.log("prov",provincias);
 
     useEffect(() => {
         if (loading) {
